@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -18,7 +17,6 @@ public class Aluno {
     private Integer idade;
     private Double peso;
     private Double altura;
-    private List<Aluno> listaAlunos;
 
     public Aluno(CadastroAlunoDTO dados){
         this.id = UUID.randomUUID();
@@ -26,29 +24,6 @@ public class Aluno {
         this.idade = dados.idade();
         this.peso = dados.peso();
         this.altura = dados.altura();
-    }
-
-    public void atualizarAluno(CadastroAlunoDTO dados){
-        if(dados.nome() != null){
-            this.nome = dados.nome();
-        }
-        if(dados.idade() != null){
-            this.idade = dados.idade();
-        }
-        if(dados.peso() != null){
-            this.peso = dados.peso();
-        }
-        if(dados.altura() != null){
-            this.altura = dados.altura();
-        }
-    }
-
-    public void adcionarAluno(Aluno aluno){
-        listaAlunos.add(aluno);
-    }
-
-    public void removerAluno(Aluno aluno){
-        listaAlunos.remove(aluno);
     }
 
 }
