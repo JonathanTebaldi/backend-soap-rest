@@ -33,8 +33,7 @@ public class AlunoController {
 
     @PutMapping("/{id}")
     public ResponseEntity atualizar(@PathVariable("id") UUID id, @RequestBody @Valid CadastroAlunoDTO dados){
-        var aluno = new Aluno(dados);
-        alunoService.atualizarAluno(id, dados);        ;
+        var aluno = alunoService.atualizarAluno(id, dados);
         return ResponseEntity.status(HttpStatus.OK).body(new DetalhamentoAlunoDTO(aluno)) ;
     }
 
@@ -46,6 +45,9 @@ public class AlunoController {
 
     @GetMapping("/imc/{id}")
     public ResponseEntity imc(@PathVariable ("id") UUID id){
-        return ResponseEntity.status(HttpStatus.OK).body(alunoService.calcularImc(id));
+        Double imc = alunoService.calcularImc(id);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                alunoService.verificarImc(imc) + ": " + imc
+        );
     }
 }
